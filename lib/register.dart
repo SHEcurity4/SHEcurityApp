@@ -10,6 +10,8 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   String? selectedgender;
 
+  String? selectedcollege;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,14 +67,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 });
               }),
              SizedBox(height: 20,),
-            TextFormField(
+            DropdownButtonFormField(
               decoration: InputDecoration(
-                    labelText: 'College',
+                    labelText: 'College Name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-            ),
+              value:selectedcollege,
+              items: ['Arts and Science College,Meenchantha','Providence Womens College','St.Joseph Devagiri'].map((College)=>DropdownMenuItem(child:Text(College),value: College,)).toList(), onChanged: (value){
+                setState(() {
+                  selectedcollege=value;
+                });
+              }),
              SizedBox(height: 10,),
             TextFormField(
               decoration: InputDecoration(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shecurity/complaint.dart';
+import 'package:shecurity/emergencycontact.dart';
+import 'package:shecurity/feedback.dart';
 import 'package:shecurity/login.dart';
 import 'package:shecurity/register.dart';
 
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: RegisterPage()
+      home: Complaints()
     );
   }
 }
