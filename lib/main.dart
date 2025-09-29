@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shecurity/appointment.dart';
 import 'package:shecurity/complaint.dart';
+import 'package:shecurity/emergency%20contacts/viewalertsemcnts.dart';
 import 'package:shecurity/emergencycontact.dart';
 import 'package:shecurity/feedback.dart';
 import 'package:shecurity/history.dart';
 import 'package:shecurity/login.dart';
+import 'package:shecurity/police/alertmsgpol.dart';
+import 'package:shecurity/police/viewcmplnts.dart';
 import 'package:shecurity/register.dart';
-import 'package:shecurity/viewalertsemcnts.dart';
-import 'package:shecurity/viewalertsteacher.dart';
+// import 'package:shecurity/viewalertsemcnts.dart';
+// import 'package:shecurity/viewalertsteacher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-       home:Viewalertsemcnts()
+       home:Viewcmplnts()
     );
   }
 }
