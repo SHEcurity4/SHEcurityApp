@@ -1,34 +1,33 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shecurity/login.dart';
+import 'package:shecurity/teacher/TeachRegister.dart';
 
-final Dio dio = Dio();
-  final String url = "http://192.168.1.114:5000/";
+final Dio dio=Dio();
+final String url = "http://192.168.1.114:5000";
 
-
-Future<void> Registerapi({
+Future<void>teacherapi({
   required String Name,
-  required int Phone,
+  required String Phone,
   required String Email,
   required String Gender,
-  required int Age,
-  required String Password,
-  required int College, // 👈 CHANGE THIS
+  required String password,
+  required String Qualification,
+  required String College, // 👈 CHANGE THIS
   required BuildContext context,
 }) async {
   try {
     Response response = await dio.post(
-      '$url/UserReg',
+      '$url/TeacherReg',
       data: {
         "Name": Name,
         "Phone_number": Phone,
         "Email": Email,
         "Gender": Gender,
-        "Age": Age,
-        "Password": Password,
+        "Qualification": Qualification,
         "College_id": College,
-        "Username": Email,
+        "Username": email,
+        "Password": password,
       },
     );
     if (response.statusCode == 200||response.statusCode == 201) {

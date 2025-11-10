@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shecurity/api/fetchcollegeapi.dart';
 import 'package:shecurity/api/registerapi.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -9,14 +10,34 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    loadColleges();
+    super.initState();
+  }
   String? selectedgender;
 
-  String? selectedcollege;
+  Map<String, dynamic>? selectedcollege;
+
+  List<Map<String, dynamic>> colleges = [];
   TextEditingController name = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController age = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  Future<void> loadColleges() async{
+    try {
+      final data=await fetchColleges();
+      setState(() {
+        colleges=data;
+      });
+    } catch (e) {
+      
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               SizedBox(height: 20),
-              DropdownButtonFormField(
+              DropdownButtonFormField<Map<String, dynamic>>(
                 decoration: InputDecoration(
                   labelText: 'College Name',
                   border: OutlineInputBorder(
@@ -92,14 +113,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 value: selectedcollege,
                 items:
-                    [
-                          'Arts and Science College,Meenchantha',
-                          'Providence Womens College',
-                          'St.Joseph Devagiri',
-                        ]
+                    colleges
                         .map(
                           (College) => DropdownMenuItem(
-                            child: Text(College),
+                            child: Text(College['College_name']),
                             value: College,
                           ),
                         )
@@ -133,17 +150,34 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  Registerapi(
-                    Name: name.text,
-                    Phone: phone.text,
-                    Email: email.text,
-                    Gender: selectedgender!,
-                    Age: age.text,
-                    Password: password.text,
-                    College: selectedcollege!,
-                    context: context,
-                  );
-                },
+  // Simple form validation
+  if (name.text.isEmpty ||
+      phone.text.isEmpty ||
+      email.text.isEmpty ||
+      age.text.isEmpty ||
+      password.text.isEmpty ||
+      selectedgender == null ||
+      selectedcollege == null ||
+      int.tryParse(phone.text) == null ||
+      int.tryParse(age.text) == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Please fill all fields correctly.")),
+    );
+    return;
+  }
+
+  Registerapi(
+    Name: name.text,
+    Phone: int.parse(phone.text),
+    Email: email.text,
+    Gender: selectedgender!,
+    Age: int.parse(age.text),
+    Password: password.text,
+    College: selectedcollege!['id'],
+    context: context,
+  );
+},
+
                 child: Text('Submit'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 68, 255, 246),

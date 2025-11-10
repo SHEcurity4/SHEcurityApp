@@ -5,10 +5,13 @@ import 'package:shecurity/emergency%20contacts/viewalertsemcnts.dart';
 import 'package:shecurity/emergencycontact.dart';
 import 'package:shecurity/feedback.dart';
 import 'package:shecurity/history.dart';
+import 'package:shecurity/home.dart';
 import 'package:shecurity/login.dart';
 import 'package:shecurity/police/alertmsgpol.dart';
 import 'package:shecurity/police/viewcmplnts.dart';
 import 'package:shecurity/register.dart';
+import 'package:shecurity/teacher/TeachRegister.dart';
+
 // import 'package:shecurity/viewalertsemcnts.dart';
 // import 'package:shecurity/viewalertsteacher.dart';
 
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-       home:Viewcmplnts()
+       home:Teachregister()
     );
   }
 }

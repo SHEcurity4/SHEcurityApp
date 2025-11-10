@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shecurity/register.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -49,7 +50,7 @@ class LoginPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(16))
               ),
             ),
-            TextButton(onPressed: (){}, child:Text('Register') )
+            TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage(),));}, child:Text('Register') )
           ],
         ),
       ),
